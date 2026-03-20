@@ -1,7 +1,18 @@
-import { Component } from '@angular/core';
+import { Component , inject } from '@angular/core';
 import { HousingLocation } from '../housing-location/housing-location';
 import {Housinglocationinfo} from '../housinglocationinfo';
+import {HousingService} from '../housing-service';
 
+export class home{
+// readonly baseUrl = 'https://angular.dev/assets/images/tutorials/common';
+housingLocationList: Housinglocationinfo[] = [];
+// Injecting HousingService into the Component
+housingService: HousingService = inject(HousingService);
+constructor(){
+//setting housingLocationlist to the data array in HousingService
+this.housingLocationList = this.housingService.getAllHousingLocations();
+}
+}
 @Component({
   selector: 'app-home',
   standalone: true,
